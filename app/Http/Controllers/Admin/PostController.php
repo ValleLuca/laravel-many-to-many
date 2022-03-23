@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -27,10 +28,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Post $post)
+    public function create()
     {
         $datipost = Category::all();
-        return view('admin.posts.create', compact('datipost'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('datipost', 'tags'));
     }
 
     /**
@@ -61,7 +63,7 @@ class PostController extends Controller
         $newPosts = new Post();
         $newPosts->fill($addpost);
         $newPosts->save();
-
+        $newPosts->tags()->sync($addpost['tags']);
         return redirect()->route('admin.post.show', $newPosts->id);
     }
 

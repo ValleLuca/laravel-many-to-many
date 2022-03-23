@@ -10,6 +10,11 @@ class Post extends Model
 
     public function category()
     {
-        return $this->belongsTo( Category::class );
+        return $this->belongsTo('App\category');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\tag');
     }
 }

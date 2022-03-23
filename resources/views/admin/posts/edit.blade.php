@@ -24,7 +24,7 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group text-center">
             <select name="category_id" id="">
                 <option value="">----</option>
                 @foreach ($category as $element)

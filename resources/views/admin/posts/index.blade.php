@@ -9,6 +9,8 @@
                 <th scope="col">content</th>
                 <th scope="col">slug</th>
                 <th scope="col">category_id</th>
+                <th scope="col">tags</th>
+
             </tr>
         </thead>
 
@@ -20,6 +22,12 @@
                     <td class="align-middle">{{$post->content}}</td>
                     <td class="align-middle">{{$post->slug}}</td>
                     <td class="align-middle">{{ $post->category ? $post->category->type : 'null' }}</td>
+                    <td>
+                        @foreach ($post->tags as $item_tag)
+                            {{$item_tag->name}}
+                        @endforeach
+                    </td>
+
                 
                     <td class="align-middle">
                         <a href="{{route("admin.post.show", $post->id)}}"><button type="button" class="btn btn-primary mt-1">Vedi</button></a>

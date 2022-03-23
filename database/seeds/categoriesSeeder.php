@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\categories;
+use App\Category;
 use Illuminate\Support\Str;
 
 class categoriesSeeder extends Seeder
@@ -15,7 +15,7 @@ class categoriesSeeder extends Seeder
     { 
         $categories= ['dati','testo','image'];
         foreach ($categories as $category) { 
-            $newCategory = new categories();
+            $newCategory = new Category();
             $newCategory->type=$category;
             $newCategory->slug= Str::of($category)->slug('-');
             $newCategory->save();

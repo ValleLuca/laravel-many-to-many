@@ -23,14 +23,31 @@
             @enderror
         </div>
 
-        <select name="category_id" id="">
+        <div class="text-center">
+            @foreach ($tags as $item_tag)
 
-            <option value="">----</option>
-                @foreach ($datipost as $element)
-                @dump($datipost)
-                    <option value="{{$element->id}}">{{$element->type}}</option>
-                @endforeach
-        </select>
+                <div class="form-check">
+                    <input class="form-check-input" name="tags[]" type="checkbox" value="{{$item_tag->id}}" id="{{$item_tag->slug}}">
+                    <label class="form-check-label" for="{{$item_tag->slug}}">
+                        {{$item_tag->name}}
+                    </label>
+                </div>
+                
+            @endforeach
+
+        </div>
+
+        <div class="text-center">
+
+            <select name="category_id" id="">
+                <option value="">----</option>
+                    @foreach ($datipost as $element)
+                    @dump($datipost)
+                        <option value="{{$element->id}}">{{$element->type}}</option>
+                    @endforeach
+            </select>
+
+        </div>
 
         <div class="text-center">
             <span><a href="{{route("admin.post.index")}}"><button type="button" class="btn btn-primary">Indietro</button></a></span>
