@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('addpost')
-    <h1 class="text-center">Crea post</h1>  
+    <h1 class="text-center">Modifica post</h1>  
 
-    <form action="{{route("admin.post.update", $post->id)}}" method="POST">
+    <form action="{{route("admin.post.update", $post->id)}}" method="POST" enctype="multipart/form-data">
         
         @csrf
         @method('PUT')
@@ -22,6 +22,20 @@
             @error('content')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+        </div>
+
+        <div class="text-center">
+            <label for="tag">Tag</label>
+            @foreach ($tags as $item_tag)
+
+                <div class="form-check">
+                    <input class="form-check-input"  type="checkbox" id="{{$item_tag->slug}}" name="tags[]" value="{{$item_tag->id}}" {{ ($post->tags->contains($item_tag)) ? "checked" : "" }}>
+                    <label class="form-check-label" for="{{$item_tag->slug}}">
+                        {{$item_tag->name}}
+                    </label>
+                </div>
+                
+            @endforeach
         </div>
 
         <div class="form-group text-center">
